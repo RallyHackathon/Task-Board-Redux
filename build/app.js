@@ -3,6 +3,8 @@
 
   var createCard, createRow;
 
+  require('./RowCardBoard');
+
   createCard = function(taskRecord) {
     return {
       xtype: 'rallyartifactcard',

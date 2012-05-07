@@ -12,6 +12,10 @@ name = 'Task Board Redux'
 task 'compile', 'compile the app', (options) ->
 	rabt.compiler.compileFile './build/app.js', './src/app.coffee'
 
+	for file in ['ArtifactRow', 'CellDropTarget', 'HeaderRow', 'Row', 'RowCardBoard']
+		rabt.compiler.compileFile "./build/#{file}.js", "./src/#{file}.js"
+
+
 task 'link', 'link the javascript files together', (options) ->
 	invoke 'compile'
 

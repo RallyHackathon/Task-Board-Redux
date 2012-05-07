@@ -344,11 +344,104 @@ exports.extname = function(path) {
 
 });
 
+require.define("/RowCardBoard.js", function (require, module, exports, __dirname, __filename) {
+/*global Ext*/
+
+"use strict";
+
+require('./HeaderRow');
+require('./CardRow');
+
+});
+
+require.define("/HeaderRow.js", function (require, module, exports, __dirname, __filename) {
+/*global Ext*/
+
+"use strict";
+
+require('./Row');
+});
+
+require.define("/Row.js", function (require, module, exports, __dirname, __filename) {
+/*global Ext*/
+"use strict";
+
+require('./CellDropTarget');
+
+/**
+ *   The default column type for a {@link Rally.ui.cardboard.CardBoard} Cardboard. In general, this class will not be created directly.
+ */
+Ext.define('Rally.ui.cardboard.Row', {
+	requires: [
+		'Rally.ui.cardboard.CellDropTarget',
+		'Ext.dd.DragSource',
+		'Ext.dd.StatusProxy',
+		'Rally.ui.cardboard.Card',
+		'Rally.util.Ref'
+	],
+	extend: "Ext.Container",
+	/**
+	 * @property {String} cls The base class applied to this object's element
+	 */
+	cls: 'row',
+	alias: 'widget.rallycardboardrow',
+
+	constructor: function constructor(config) {
+
+	},
+
+	initComponent: function initComponent() {
+
+	}
+});
+
+});
+
+require.define("/CellDropTarget.js", function (require, module, exports, __dirname, __filename) {
+/*global Ext*/
+
+"use strict";
+
+Ext.define('Rally.ui.cardboard.CellDropTarget', {
+	extend: 'Ext.dd.DropTarget',
+	requires: [],
+
+	ddGroup: "cardboard",
+	dropAllowed: "cardboard",
+	dropNotAllowed: "cardboard",
+
+	column: undefined,
+	row: undefined,
+
+	constructor: function constructor(dropEl, config) {
+		this.initConfig(config);
+		this.callParent(arguments);
+	},
+
+	dropNotify: function dropNotify(source, e, data) {
+		var allowDrop = true;
+
+
+		return allowDrop;
+	}
+});
+});
+
+require.define("/CardRow.js", function (require, module, exports, __dirname, __filename) {
+/*global Ext*/
+
+"use strict";
+
+require('./Row');
+});
+
 require.define("/app.js", function (require, module, exports, __dirname, __filename) {
     (function() {
   "use strict";
 
   var createCard, createRow;
+
+  require('./RowCardBoard');
 
   createCard = function(taskRecord) {
     return {

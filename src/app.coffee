@@ -1,4 +1,7 @@
+###global Ext, Rally###
+
 "use strict"
+require('./RowCardBoard')
 
 createCard = (taskRecord) ->
 	{
